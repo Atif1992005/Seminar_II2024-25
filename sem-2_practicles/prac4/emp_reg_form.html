@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+    form {
+      max-width: 500px;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Employee Registration Form</h2>
+  <form id="employeeForm">
+    <label for="fullName">Full Name *</label>
+    <input type="text" id="fullName" name="fullName" required placeholder="Name">
+    <div class="error" id="nameError"></div>
+
+    <label for="email">Email Address *</label>
+    <input type="text" id="email" name="email" required placeholder="Email">
+    <div class="error" id="emailError"></div>
+
+    <label for="phone">Phone Number *</label>
+    <input type="text" id="phone" name="phone" required placeholder="xxxxxxxxxx">
+    <div class="error" id="phoneError"></div>
+
+    <label for="password">Password *</label>
+    <input type="password" id="password" name="password" required minlength="6" placeholder="Min. 6 characters">
+
+    <label for="salary">Salary (INR) *</label>
+    <input type="text" id="salary" name="salary" required placeholder="₹">
+    <div class="error" id="salaryError"></div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateInput(input, pattern, errorElement, errorMessage) {
+      input.addEventListener('input', function (event) {
+        const value = event.target.value;
+        if (!pattern.test(value)) {
+          document.getElementById(errorElement).innerText = errorMessage;
+        } else {
+          document.getElementById(errorElement).innerText = '';
+        }
+      });
+    }
+
+    validateInput(document.getElementById('fullName'), /^[A-Za-z\s]*$/, 'nameError', "Only letters and spaces are allowed.");
+    validateInput(document.getElementById('email'), /^[A-Za-z0-9@._]*$/, 'emailError', "Only letters, numbers, @, . and _ are allowed.");
+
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', function (event) {
+      phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+      if (phoneInput.value.length > 10) {
+        phoneInput.value = phoneInput.value.slice(0, 10);
+      }
+    });
+
+    phoneInput.addEventListener('blur', function () {
+      const phoneValue = phoneInput.value;
+      if (phoneValue.length !== 10) {
+        document.getElementById('phoneError').innerText = "Phone number must be exactly 10 digits.";
+      } else {
+        document.getElementById('phoneError').innerText = '';
+      }
+    });
+
+    validateInput(document.getElementById('salary'), /^[0-9.]*$/, 'salaryError', "Only digits and a decimal point are allowed.");
+
+    document.getElementById('email').addEventListener('blur', function () {
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').innerText = "Please enter a valid email address (e.g., john.doe@example.com).";
+      } else {
+        document.getElementById('emailError').innerText = '';
+      }
+    });
+
+    document.getElementById('employeeForm').addEventListener('submit', function (event) {
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const salary = document.getElementById('salary').value;
+
+      const namePattern = /^[A-Za-z\s]+$/;
+      const emailPattern = /^[A-Za-z0-9@._]+$/;
+      const phonePattern = /^\d{10}$/;
+      const salaryPattern = /^[0-9.]+$/;
+
+      if (!namePattern.test(fullName)) {
+        alert("Full Name must only contain letters and spaces.");
+        event.preventDefault();
+        return;
+      }
+      if (!emailPattern.test(email)) {
+        alert("Email Address must be in a valid format (letters, numbers, @, ., and _).");
+        event.preventDefault();
+        return;
+      }
+      if (!phonePattern.test(phone)) {
+        alert("Phone Number must only contain 10 digits.");
+        event.preventDefault();
+        return;
+      }
+      if (!salaryPattern.test(salary)) {
+        alert("Salary must contain only digits and a decimal point.");
+        event.preventDefault();
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

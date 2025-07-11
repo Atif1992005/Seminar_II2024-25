@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR11</title>
+
+</head>
+
+<body>
+    <div class="container" style="border: 1px solid">
+
+        <label for="rollno">Roll no:</label>
+        <input type="number" name="rollno" id="rollno">
+        <br>
+        <button id="btn">Search</button>
+    </div>
+    <div style="border: 1px blue solid;">
+        <p id="Responce"></p>
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        btn.addEventListener('click', function() {
+            // var rollno = document.getElementById("rollno");
+            const rollno= document.getElementById("rollno").value;
+            console.log("search entered");
+            
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "search.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("Responce").innerHTML = this.responseText
+
+                }
+            }
+console.log(rollno)
+            xhr.send("rollno="+encodeURIComponent(rollno));
+        })
+    </script>
+</body>
+
+</html>

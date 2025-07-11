@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR12</title>
+
+</head>
+
+<body>
+    <div class="container" style="border: 1px solid">
+        <label for="order">select a order:</label>
+        <br>
+
+        <select name="order" id="order" title="slect order">slect
+            
+            <option value="ascending">ascending</option>
+            <option value="decending">decending</option>
+            
+        </select>
+        <br>
+        <button id="btn">Select</button>
+    </div>
+    <div style="border: 1px blue solid;">
+        <p id="Responce"></p>
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        btn.addEventListener('click', function() {
+           let a =document.getElementById("order").value;
+            
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "search.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("Responce").innerHTML = this.responseText
+
+                }
+            }
+
+            xhr.send("order="+encodeURIComponent(a));
+        })
+    </script>
+</body>
+
+</html>

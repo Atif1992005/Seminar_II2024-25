@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Number Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 150px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Prime Numbers Between Two Numbers</h2>
+  <input type="number" id="lower" placeholder="Enter lower number">
+  <input type="number" id="upper" placeholder="Enter upper number">
+  <br>
+  <button onclick="findPrimes()">Show Prime Numbers</button>
+  <div id="result"></div>
+
+  <script>
+    function findPrimes() {
+      const lowerNumber = parseInt(document.getElementById('lower').value);
+      const higherNumber = parseInt(document.getElementById('upper').value);
+      let resultText = `Prime numbers between ${lowerNumber} and ${higherNumber} are:\n`;
+      let primes = [];
+
+      for (let i = lowerNumber; i <= higherNumber; i++) {
+        let flag = 0;
+        if (i < 2) continue;
+        for (let j = 2; j < i; j++) {
+          if (i % j === 0) {
+            flag = 1;
+            break;
+          }
+        }
+        if (flag === 0) {
+          primes.push(i);
+        }
+      }
+
+      document.getElementById('result').innerText = resultText + primes.join(', ');
+    }
+  </script>
+</body>
+</html>
