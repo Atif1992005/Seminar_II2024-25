@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes - Studyfy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" style="margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-top:0;">Study Notes</h2>
+                <form id="subjectFilterForm">
+                    <select id="subjectFilter" name="subject" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="All">All Subjects</option>
+                        <!-- Subjects will be populated by JS -->
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div id="notesList">
+            <!-- Notes will be populated by JS -->
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html> 

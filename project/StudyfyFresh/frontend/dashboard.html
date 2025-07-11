@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Studyfy</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Top navigation bar -->
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="site-title">Studyfy</h1>
+            <nav class="site-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="notes.html">Notes</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="todo.html">To-Do</a>
+                <a href="study_tips.html">Study Tips</a>
+                <a href="#" id="logoutNav">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card" style="margin-bottom: 30px;">
+            <h2 style="margin-top:0;">Welcome back, <span id="dashboardUsername">User</span>!</h2>
+            <p>This is your central hub for academic success. What would you like to do today?</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="icon"><i class="fas fa-book-open"></i></div>
+                <h3>Study Notes</h3>
+                <p>Access comprehensive notes for all your subjects.</p>
+                <a href='notes.html' class='btn'>View Notes</a>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-question-circle"></i></div>
+                <h3>Quizzes</h3>
+                <p>Test your knowledge and prepare for exams.</p>
+                <a href='quizzes.html' class='btn'>Take a Quiz</a>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-tasks"></i></div>
+                <h3>To-Do List</h3>
+                <p>Organize your study schedule and manage your tasks.</p>
+                <a href='todo.html' class='btn'>Manage Tasks</a>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Study Tips</h3>
+                <p>Discover new strategies to study more effectively.</p>
+                <a href='study_tips.html' class='btn'>Get Tips</a>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html> 
